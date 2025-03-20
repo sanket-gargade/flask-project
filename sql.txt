@@ -1,0 +1,59 @@
+create database cake_combo;
+
+mysql> use cake_combo;
+
+create table Category(Category_id int primary key auto_increment,
+    -> Category_name varchar(50));
+
+
+
+create table Cake(cake_id int primary key auto_increment, cake_name varchar(20),
+    -> price float ,description_cake varchar(50), image_url varchar(100),
+    -> cat_id int);
+
+
+alter table Cake add foreign key(cat_id) references Category(Category_id);
+
+insert into Category(Category_name) values("Birthday");
+
+
+ select c.cake_id,c.cake_name,c.price,c.description_cake,c.image_url,
+    -> cat.Category_name  from cake c inner join category cat
+    -> on c.cat_id = cat.Category_id;
+
+
+
+ create view Cake_Category as
+ (
+     select c.cake_id,c.cake_name,c.price,c.description_cake,c.image_url,
+    -> cat.Category_name  from cake c inner join category cat
+-> on c.cat_id = cat.Category_id);
+
+
+
+create table AdminLogin (username varchar(25) primary key,
+    -> password varchar(25));
+
+
+insert into AdminLogin values ('admin1','admin@123')
+
+insert into AdminLogin values ('admin2','admin@123');
+
+
+select * from AdminLogin where username='admin1' and password = 'admin123';
+
+
+select * from AdminLogin where username='admin1' and password = 'admin@123';
+
+
+
+select count(*) from AdminLogin where username='admin1' and password
+= 'admin@123';
+
+
+
+ create table User_Info(username varchar(20) primary key,
+    -> password varchar(20));
+
+
+
